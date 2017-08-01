@@ -20,8 +20,11 @@ photo="http://www.cakebakeandsweets.com/wp-content/uploads/sites/3/2013/11/Melbo
     if(auth){
       this.authService.token=this.authService.getToken();
     this.router.navigate(["/recipes"]);
-    
+    console.log("User Authenticated");
     }
+  else{
+    console.log("User Unauthenticated");
+  }
   }
 )
   }

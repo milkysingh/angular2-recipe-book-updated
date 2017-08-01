@@ -57,7 +57,7 @@ h2{
     width:500px; 
     left:50%;
     margin-left:-250px;
-    
+    margin-top: 30px;
     position: fixed
 }
 

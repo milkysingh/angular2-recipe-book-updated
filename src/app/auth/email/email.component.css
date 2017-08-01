@@ -1,12 +1,12 @@
 
 
 .form-container {
-    background:cornsilk;
+    background:whitesmoke;
     padding:3.5em;
     width:500px; 
     left:50%;
     margin-left:-250px;
-    
+    margin-top: 80px;
     position: fixed
 }
 

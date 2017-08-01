@@ -1,23 +1,9 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy
-} from '@angular/core';
-import {
-  Ingredients
-} from '../shared/ingredients.model'
-import {
-  ShoppingService
-} from "../services/shopping.service";
-import {
-  Subscription
-} from "rxjs/Subscription";
-import {
-  DatabaseService
-} from "../services/database.service";
-import {
-  Response
-} from "@angular/http";
+import { Component, OnInit,OnDestroy} from '@angular/core';
+import {  Ingredients} from '../shared/ingredients.model'
+import {  ShoppingService} from "../services/shopping.service";
+import {  Subscription} from "rxjs/Subscription";
+import {  DatabaseService} from "../services/database.service";
+import {  Response} from "@angular/http";
 import { moveIn,fallOut} from '../auth/router.animations';
 @Component({
   selector: 'app-shopping-list',
@@ -48,13 +34,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.mySubscription.unsubscribe();
   }
   saveCart() {
-    this.databaseService.onSaveShoppingCart(this.ingredients).subscribe((
-      (response: Response) => {
-        console.log(response.json());
-      }
-    ),
-    (err)=>this.error=false
-  );
+    this.databaseService.onSaveShoppingCart(this.ingredients).subscribe();
   }
   fetchCart() {
     this.databaseService.onFetchShopppingCart().subscribe(
