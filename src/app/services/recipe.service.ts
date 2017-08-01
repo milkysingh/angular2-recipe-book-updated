@@ -28,7 +28,9 @@ export class RecipeService {
   getRecipes() {
 
     // TODO: implement fetching list of receips from the firebase.
-
+    // this.database.onFetch().map((response: Response) =>{
+    //      implement further logic
+    // );
     return this.recipe.slice();
   }
 
