@@ -9,7 +9,6 @@ import {AuthService} from "./auth.service";
 export class DatabaseService {
   constructor(private http: Http, private authService: AuthService) {
   }
-
   onSaveData(recipes: Recipe[]) {
     const token = this.authService.getToken();
     return this.http.put("https://my-recipe-book-97ee7.firebaseio.com/recipebook.json?auth=" + token, recipes).map(
@@ -18,7 +17,6 @@ export class DatabaseService {
       }
     );
   }
-
   onFetchData() {
     const token = this.authService.getToken();
     return this.http.get("https://my-recipe-book-97ee7.firebaseio.com/recipebook.json?auth=" + token);

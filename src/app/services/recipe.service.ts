@@ -1,9 +1,11 @@
 import {Recipe} from "../recipes/recipe.model"
 import {Ingredients} from "../shared/ingredients.model"
-import {Subject} from "rxjs/Subject"
+import {Subject} from "rxjs/Subject";
+import {DatabaseService} from '../services/database.service';
 
 export class RecipeService {
   // recipeSelected = new EventEmitter < Recipe > ();
+  // TODO: remove  this hard coded string values
   changedRecipe = new Subject<Recipe[]>();
   private recipe: Recipe[] = [
     new Recipe("Masala Paneer Recipe",
@@ -20,7 +22,13 @@ export class RecipeService {
       ])
   ];
 
+  constructor(private databaseService: DatabaseService) {
+  }
+
   getRecipes() {
+
+    // TODO: implement fetching list of receips from the firebase.
+
     return this.recipe.slice();
   }
 
