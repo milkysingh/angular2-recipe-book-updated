@@ -1,16 +1,17 @@
 <head>
-   <link media="all" type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation-flex.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.2.2/web-animations.min.js"></script>
+  <link media="all" type="text/css" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation-flex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.2.2/web-animations.min.js"></script>
 </head>
 <div class="form-container">
   <a routerLink="/signin" id="goback">Go back</a>
 
   <h2 class="styleThisH2">Join now</h2>
 
-   <div class="alert alert-danger" *ngIf="error" [@fallIn]='state'>
-  <span class="glyphicon glyphicon-exclamation-sign" > {{error}}</span>
-</div>
-    
+  <div class="alert alert-danger" *ngIf="error" [@fallIn]='state'>
+    <span class="glyphicon glyphicon-exclamation-sign"> {{error}}</span>
+  </div>
+
   <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
 
     <input type="email" placeholder="Email address.." ngModel name="email" class="txt styleThisText" required>

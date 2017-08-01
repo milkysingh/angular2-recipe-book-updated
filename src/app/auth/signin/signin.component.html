@@ -1,23 +1,25 @@
 <head>
-   <link media="all" type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation-flex.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.2.2/web-animations.min.js"></script>
+  <link media="all" type="text/css" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation-flex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.2.2/web-animations.min.js"></script>
 </head>
 <div [style.background-image]="'url(' + photo + ')'">
-  
 
-<div class="form-container"  >
-  <img src="assets/images/book.svg" id="lock">
-<h2 >Yum Recipe</h2>
-<br>
- <div class="alert alert-danger" *ngIf="error">
-  <span class="glyphicon glyphicon-exclamation-sign" > {{error}}</span>
-</div>
-    
 
-  <button (click)="loginFb()" id="fb" class="styleThisButton">Login With Facebook</button><br>
-  <button (click)="loginGoogle()" id="google" class="styleThisButton">Login With Google</button>
-  <button routerLink="/email-login" id="email" class="styleThisButton">Email</button>
+  <div class="form-container">
+    <img src="assets/images/book.svg" id="lock">
+    <h2>Yum Recipe</h2>
+    <br>
+    <div class="alert alert-danger" *ngIf="error">
+      <span class="glyphicon glyphicon-exclamation-sign"> {{error}}</span>
+    </div>
 
-  <a routerLink="/signup" routerLinkActive="active" class="alc">No account? <strong>Create one here</strong></a>
-</div> 
+
+    <button (click)="loginFb()" id="fb" class="styleThisButton">Login With Facebook</button>
+    <br>
+    <button (click)="loginGoogle()" id="google" class="styleThisButton">Login With Google</button>
+    <button routerLink="/email-login" id="email" class="styleThisButton">Email</button>
+
+    <a routerLink="/signup" routerLinkActive="active" class="alc">No account? <strong>Create one here</strong></a>
+  </div>
 </div>

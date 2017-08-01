@@ -1,23 +1,27 @@
-import { Component, OnInit,OnDestroy} from '@angular/core';
-import {  Ingredients} from '../shared/ingredients.model'
-import {  ShoppingService} from "../services/shopping.service";
-import {  Subscription} from "rxjs/Subscription";
-import {  DatabaseService} from "../services/database.service";
-import {  Response} from "@angular/http";
-import { moveIn,fallOut} from '../auth/router.animations';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Ingredients} from '../shared/ingredients.model'
+import {ShoppingService} from "../services/shopping.service";
+import {Subscription} from "rxjs/Subscription";
+import {DatabaseService} from "../services/database.service";
+import {Response} from "@angular/http";
+import {fallOut, moveIn} from '../auth/router.animations';
+
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css'],
-  animations: [moveIn(),fallOut()],
+  animations: [moveIn(), fallOut()],
   host: {'[@moveIn]': ''}
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Ingredients[] = [];
-  state="";
-  error=false;
-  constructor(private shoppingService: ShoppingService, private databaseService: DatabaseService) {}
+  state = "";
+  error = false;
   private mySubscription: Subscription;
+
+  constructor(private shoppingService: ShoppingService, private databaseService: DatabaseService) {
+  }
+
   ngOnInit() {
     this.ingredients = this.shoppingService.returnIngredients();
     this.mySubscription = this.shoppingService.changedIngredients.subscribe(
@@ -26,6 +30,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       }
     );
   }
+
   onEdit(index: number) {
     this.shoppingService.onEditing.next(index);
   }
@@ -33,19 +38,23 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.mySubscription.unsubscribe();
   }
+
   saveCart() {
     this.databaseService.onSaveShoppingCart(this.ingredients).subscribe();
   }
+
   fetchCart() {
     this.databaseService.onFetchShopppingCart().subscribe(
       (
-      (response: Response) => {
-        this.shoppingService.updateCart(response.json())
-      
+        (response: Response) => {
+          this.shoppingService.updateCart(response.json())
+
+        }
+      ),
+      (error) => {
+        this.error = true
       }
-    ),
-    (error)=>{  this.error=true}
-  )
+    )
   }
 
 }

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service"
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
-import { AngularFireAuth } from 'angularfire2/auth';
-import { moveIn, fallIn } from '../router.animations';
+import {AngularFireAuth} from 'angularfire2/auth';
+import {fallIn, moveIn} from '../router.animations';
 
 @Component({
   selector: 'app-email',
@@ -14,27 +14,30 @@ import { moveIn, fallIn } from '../router.animations';
 })
 export class EmailComponent implements OnInit {
 
-  constructor(private afAuth:AngularFireAuth, private router:Router,private authService:AuthService) {  }
-error:any;
-   state: string = '';
+  error: any;
+  state: string = '';
+
+  constructor(private afAuth: AngularFireAuth, private router: Router, private authService: AuthService) {
+  }
+
   ngOnInit() {
   }
-  onSubmit(form :NgForm){
-const email = form.value.email;
+
+  onSubmit(form: NgForm) {
+    const email = form.value.email;
     const password = form.value.password;
- this.afAuth.auth.signInWithEmailAndPassword(email,password)
+    this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(
         (response) => {
-            this.router.navigate(["/recipes"]);
-            this.authService.getToken();
+          this.router.navigate(["/recipes"]);
+          this.authService.getToken();
         }
       )
       .catch(
-        (err) =>{
-          this.error=err;
+        (err) => {
+          this.error = err;
         }
       )
-//this.loginForm.reset();
 
   }
 

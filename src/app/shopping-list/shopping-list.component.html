@@ -1,21 +1,23 @@
-<div class="row" >
+<div class="row">
   <div class="col-md-10">
     <app-shopping-edit></app-shopping-edit>
     <hr>
     <div class="row">
       <div class="col-xs-6">
-        <button type="button" (click)="saveCart()" class="btn btn-warning" *ngIf="ingredients.length>0"> 
-           Save Cart
-          </button>
+        <button type="button" (click)="saveCart()" class="btn btn-warning" *ngIf="ingredients.length>0">
+          Save Cart
+        </button>
       </div>
-      <div class="col-md-6" >
-        <button type="button" class="btn btn-primary" (click)="fetchCart()">Get Cart</button><span *ngIf="error" style="color:red">Error</span>
+      <div class="col-md-6">
+        <button type="button" class="btn btn-primary" (click)="fetchCart()">Get Cart</button>
+        <span *ngIf="error" style="color:red">Error</span>
       </div>
     </div>
-    <ul class="list-group"  >
-      <a class="list-group-item" style="cursor:pointer" *ngFor="let item of ingredients;let i=index" (click)="onEdit(i)" [@fallOut]='state'>{{item.name}}({{item.amount}})</a>
+    <ul class="list-group">
+      <a class="list-group-item" style="cursor:pointer" *ngFor="let item of ingredients;let i=index" (click)="onEdit(i)"
+         [@fallOut]='state'>{{item.name}}({{item.amount}})</a>
     </ul>
   </div>
 </div>
- 
- 
+
+
