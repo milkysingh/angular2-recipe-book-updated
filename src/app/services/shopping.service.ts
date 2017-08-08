@@ -1,9 +1,5 @@
-import {
-  Ingredients
-} from '../shared/ingredients.model';
-import {
-  Subject
-} from "rxjs/Subject"
+import {Ingredients} from '../shared/ingredients.model';
+import {Subject} from "rxjs/Subject"
 export class ShoppingService {
   changedIngredients = new Subject < Ingredients[] > ();
   onEditing = new Subject < number > ();

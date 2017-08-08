@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {AuthService} from "../../services/auth.service"
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
@@ -12,13 +12,12 @@ import { moveIn, fallIn } from '../router.animations';
   animations: [moveIn(), fallIn()],
   host: {'[@moveIn]': ''}
 })
-export class EmailComponent implements OnInit {
+export class EmailComponent {
 
   constructor(private afAuth:AngularFireAuth, private router:Router,private authService:AuthService) {  }
 error:any;
    state: string = '';
-  ngOnInit() {
-  }
+  
   onSubmit(form :NgForm){
 const email = form.value.email;
     const password = form.value.password;

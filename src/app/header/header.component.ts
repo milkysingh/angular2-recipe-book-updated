@@ -1,22 +1,7 @@
-import {
-  Component,
-  EventEmitter,
-  Output,
-  OnInit
-} from "@angular/core"
-import {
-  RecipeService
-} from "../services/recipe.service";
-import {
-  DatabaseService
-} from "../services/database.service";
-import {
-  Recipe
-} from "../recipes/recipe.model";
-import {
-  Response
-} from "@angular/http";
-import "rxjs/Rx";
+import {Component,OnInit,} from "@angular/core"
+import {RecipeService} from "../services/recipe.service";
+import {DatabaseService} from "../services/database.service";
+import {Recipe} from "../recipes/recipe.model";
 import { AuthService } from "../services/auth.service";
 @Component({
   selector: "app-header",
@@ -25,7 +10,7 @@ import { AuthService } from "../services/auth.service";
 })
 
 export class HeaderComponent {
-  constructor(private recipeService: RecipeService, private database: DatabaseService,private authService:AuthService) {}
+  constructor(private recipeService: RecipeService, private database: DatabaseService, private authService: AuthService) {}
 
   recipe: Recipe[];
 
@@ -35,27 +20,11 @@ export class HeaderComponent {
   }
   onFetch() {
 
-    this.database.onFetchData().map(
-        (response: Response) => {
-          const recipe: Recipe[] = response.json();
-          for (var item of recipe) {
-            if (!item['ingredients']) {
-              
-              item['ingredients'] = [];
-            }
-          }
-          return recipe;
-        }
-      )
-      .subscribe(
-        (recipe: Recipe[]) => {
-          // this.recipe=response
-          this.recipeService.fetchedRecipes(recipe);
-        }
-      )
+    this.database.onFetchData();
   }
-    onLogout(){
-      this.authService.onLogout();
-    }
+  onLogout() {
+    this.authService.onLogout();
+    this.recipeService.fetchedRecipes([]);
+  }
 
 }

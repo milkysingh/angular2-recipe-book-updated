@@ -13,7 +13,7 @@ import { moveIn } from '../router.animations';
   host: {'[@moveIn]': ''}
 })
 export class SigninComponent  {
-photo="http://www.cakebakeandsweets.com/wp-content/uploads/sites/3/2013/11/Melbourne-Website-background-image-1.jpg"
+
   constructor(private authService: AuthService,private router:Router,private afAuth:AngularFireAuth) {
     this.afAuth.authState.subscribe (
   (auth)=>{
@@ -34,7 +34,7 @@ photo="http://www.cakebakeandsweets.com/wp-content/uploads/sites/3/2013/11/Melbo
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
     .then(
       (response)=>{
-       
+       console.log(response.additionalUserInfo.profile.email);
          this.router.navigate(["/"]);
             this.authService.getToken();
       }

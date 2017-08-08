@@ -8,11 +8,22 @@ export class AuthService {
 constructor(private router:Router,private afAuth:AngularFireAuth){}
 
   getToken() {
+    // this.afAuth.authState.subscribe(
+    //   (auth)=>{
+    //     if(auth){
+    //       this.afAuth.auth.currentUser.getIdToken(true).then(
+    //         (token)=>{this.token = token;}
+    //       )
+    //     }
+
+    //   }
+    // )
     firebase.auth().currentUser.getToken().then(
       (token) =>{
          this.token = token;
       }
     )
+    
     return this.token;
   }
   isAuthenticated() {

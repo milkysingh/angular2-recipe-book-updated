@@ -11,13 +11,11 @@ import { moveIn, fallIn } from '../router.animations';
    animations: [moveIn(), fallIn()],
   host: {'[@moveIn]': ''}
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent  {
 
   constructor(private authService: AuthService,private router:Router,private afAuth:AngularFireAuth) {}
  error:any;
  state: string = '';
-
-  ngOnInit() {}
   onSubmit(form: NgForm) {
    
     const email = form.value.email;

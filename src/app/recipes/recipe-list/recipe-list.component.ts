@@ -7,25 +7,25 @@ import{ DatabaseService} from "../../services/database.service";
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css'],
- 
+
 })
 export class RecipeListComponent implements OnInit {
 
-recipe:Recipe[] ;
-state:"";
+  recipe: Recipe[];
+  state: "";
 
-  constructor(private recipeService:RecipeService,private databaseService:DatabaseService) { }
+  constructor(private recipeService: RecipeService, private databaseService: DatabaseService) {}
 
 
   ngOnInit() {
     this.recipeService.changedRecipe.subscribe(
-      (recipe:Recipe[])=>{
-this.recipe=recipe;
+      (recipe: Recipe[]) => {
+        this.recipe = recipe;
       }
     )
-    this.recipe=this.recipeService.getRecipes();
-  
- }
- 
+    this.recipe = this.recipeService.getRecipes();
+
+  }
+
 
 }

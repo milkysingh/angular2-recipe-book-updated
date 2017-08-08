@@ -1,14 +1,8 @@
-import {
-  Recipe
-} from "../recipes/recipe.model"
-import {
-  Ingredients
-} from "../shared/ingredients.model"
-import {
-  Subject
-} from "rxjs/Subject"
+import {Recipe} from "../recipes/recipe.model"
+import {Ingredients} from "../shared/ingredients.model"
+import {Subject} from "rxjs/Subject"
 
-export class RecipeService {
+export class RecipeService  {
   // recipeSelected = new EventEmitter < Recipe > ();
   changedRecipe = new Subject < Recipe[] > ();
   private recipe: Recipe[] = [
@@ -27,6 +21,7 @@ export class RecipeService {
   ];
 
   getRecipes() {
+
     return this.recipe.slice();
   }
   getRecipeDetail(id: number) {

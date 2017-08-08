@@ -4,9 +4,10 @@ import {  Recipe} from "../recipes/recipe.model";
 import "rxjs/Rx";
 import {  Ingredients} from "../shared/ingredients.model"
 import { AuthService } from "./auth.service";
+import {RecipeService} from "../services/recipe.service";
 @Injectable()
 export class DatabaseService {
-  constructor(private http: Http,private authService:AuthService) {}
+  constructor(private http: Http,private authService:AuthService,private recipeService:RecipeService) {}
   onSaveData(recipes: Recipe[]) {
     const token=this.authService.getToken();
     return this.http.put("https://my-recipe-book-97ee7.firebaseio.com/recipebook.json?auth="+token, recipes).map(
@@ -17,7 +18,24 @@ export class DatabaseService {
   }
   onFetchData() {
     const token=this.authService.getToken();
-    return this.http.get("https://my-recipe-book-97ee7.firebaseio.com/recipebook.json?auth="+token);
+     this.http.get("https://my-recipe-book-97ee7.firebaseio.com/recipebook.json?auth="+token).map(
+        (response: Response) => {
+          const recipe: Recipe[] = response.json();
+          for (var item of recipe) {
+            if (!item['ingredients']) {
+              
+              item['ingredients'] = [];
+            }
+          }
+          return recipe;
+        }
+      )
+      .subscribe(
+        (recipe: Recipe[]) => {
+          // this.recipe=response
+          this.recipeService.fetchedRecipes(recipe);
+        }
+      )
   }
 
   onSaveShoppingCart(ingredients: Ingredients[]) {
